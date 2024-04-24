@@ -3,7 +3,19 @@ import torchvision.transforms as T
 from PIL import Image
 from transformers import CLIPProcessor, CLIPTokenizer, CLIPModel
 import torch
-from diffusers import StableDiffusionPipeline
+from diffusers import StableDiffusionPipeline, EulerDiscreteScheduler
+
+model_id = "stabilityai/stable-diffusion-2"
+
+# Use the Euler scheduler here instead
+scheduler = EulerDiscreteScheduler.from_pretrained(model_id, subfolder="scheduler")
+pipe = StableDiffusionPipeline.from_pretrained(model_id, scheduler=scheduler, torch_dtype=torch.float16)
+pipe = pipe.to("cuda")
+
+prompt = "a photo of an astronaut riding a horse on mars"
+image = pipe(prompt).images[0]
+    
+image.save("astronaut_rides_horse.png")
 
 
 # from diffusers import AutoPipelineForText2Image
@@ -17,17 +29,17 @@ from diffusers import StableDiffusionPipeline
 # image = pipeline_text2image(prompt=prompt).images[0]
 # image.save('astro.png')
 
-pipe = StableDiffusionPipeline.from_pretrained(
-	"CompVis/stable-diffusion-v2-1",  torch_dtype=torch.float16,
-        use_auth_token=False, cache_dir='./huggingface_models/'
-)
-# pipe = pipe.to("cuda")
-#
-prompt = "a photo of an astronaut riding a horse on mars"
-with torch.autocast("cuda"):
-    image = pipe(prompt)["sample"][0]  
+# pipe = StableDiffusionPipeline.from_pretrained(
+# 	"CompVis/stable-diffusion-v2-1",  torch_dtype=torch.float16,
+#         use_auth_token=False, cache_dir='./huggingface_models/'
+# )
+# # pipe = pipe.to("cuda")
+# #
+# prompt = "a photo of an astronaut riding a horse on mars"
+# with torch.autocast("cuda"):
+#     image = pipe(prompt)["sample"][0]  
     
-image.save("astronaut_rides_horse.png")
+# image.save("astronaut_rides_horse.png")
 
 
 # Load CLIP
