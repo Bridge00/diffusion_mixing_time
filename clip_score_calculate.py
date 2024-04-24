@@ -10,7 +10,7 @@ model_id = "stabilityai/stable-diffusion-2"
 # Use the Euler scheduler here instead
 # scheduler = EulerDiscreteScheduler.from_pretrained(model_id, subfolder="scheduler")
 pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16, cache_dir='./huggingface_models/')
-pipe = pipe.to("cuda")
+#pipe = pipe.to("cuda")
 
 prompt = "a photo of an astronaut riding a horse on mars"
 image = pipe(prompt).images[0]
