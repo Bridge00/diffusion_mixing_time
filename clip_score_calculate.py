@@ -19,7 +19,7 @@ from diffusers import StableDiffusionPipeline
 
 pipe = StableDiffusionPipeline.from_pretrained(
 	"CompVis/stable-diffusion-v1-4",  torch_dtype=torch.float16,
-        use_auth_token=False
+        use_auth_token=False, cache_dir='./huggingface_models/'
 ).to("cuda")
 #
 prompt = "a photo of an astronaut riding a horse on mars"

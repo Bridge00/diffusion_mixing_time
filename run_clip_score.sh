@@ -20,7 +20,7 @@
 #SBATCH --qos=scavenger
 #SBATCH --nodes=1
 ##SBATCH --ntasks=8
-#SBATCH --gres=gpu:2
+#SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=1
 
 # GAMMA Commands
