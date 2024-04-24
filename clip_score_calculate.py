@@ -18,7 +18,7 @@ from diffusers import StableDiffusionPipeline
 # image.save('astro.png')
 
 pipe = StableDiffusionPipeline.from_pretrained(
-	"CompVis/stable-diffusion-v1-4",  torch_dtype=torch.float16,
+	"CompVis/stable-diffusion-v2-1",  torch_dtype=torch.float16,
         use_auth_token=False, cache_dir='./huggingface_models/'
 )
 # pipe = pipe.to("cuda")
