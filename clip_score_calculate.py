@@ -18,7 +18,7 @@ from diffusers import StableDiffusionPipeline
 # image.save('astro.png')
 
 pipe = StableDiffusionPipeline.from_pretrained(
-	"CompVis/stable-diffusion-v1-4", 
+	"CompVis/stable-diffusion-v1-4",  torch_dtype=torch.float16,
         use_auth_token=False
 ).to("cuda")
 #
