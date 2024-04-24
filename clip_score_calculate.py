@@ -24,7 +24,7 @@ pipe = StableDiffusionPipeline.from_pretrained(
 # pipe = pipe.to("cuda")
 #
 prompt = "a photo of an astronaut riding a horse on mars"
-with autocast("cuda"):
+with torch.autocast("cuda"):
     image = pipe(prompt)["sample"][0]  
     
 image.save("astronaut_rides_horse.png")
